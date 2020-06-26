@@ -80,7 +80,7 @@ paths:
     post:
       tags:
         - "event members"
-      summary: "Create event member"
+      summary: "Create event member for event"
       description: ""
       produces:
         - "application/json"
@@ -112,7 +112,7 @@ paths:
     get:
       tags:
         - "event members"
-      summary: "Get event members"
+      summary: "Get event members by event"
       description: ""
       produces:
         - "application/json"
@@ -153,6 +153,30 @@ paths:
           description: "Internal server error"
 
   /event-members/{event_member}:
+    get:
+      tags:
+        - "event members"
+      summary: "Get event member"
+      description: ""
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "event_member"
+          type: "integer"
+          required: true
+          description: "Id of event member"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/EventResponseModel"
+        401:
+          description: "Incorrect auth credentials"
+        404:
+          description: "Not found"
+        500:
+          description: "Internal server error"
     put:
       tags:
         - "event members"

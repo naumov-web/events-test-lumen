@@ -9,7 +9,7 @@ use Illuminate\View\View;
  * Class DocsController
  * @package App\Http\Controllers\DevTools
  */
-class DocsController extends Controller
+final class DocsController extends Controller
 {
 
     /**
@@ -32,7 +32,7 @@ class DocsController extends Controller
 
     /**
      * Render form with docs
-     * 
+     *
      * @return View
      */
     public function form(): View
