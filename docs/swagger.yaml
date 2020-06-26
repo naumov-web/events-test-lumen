@@ -70,7 +70,141 @@ paths:
           schema:
             $ref: "#/definitions/EventsListResponseModel"
         401:
-          description: "Incorrect login data"
+          description: "Incorrect auth credentials"
+        422:
+          description: "Validation error"
+        500:
+          description: "Internal server error"
+
+  /account/events/{event}/members:
+    post:
+      tags:
+        - "event members"
+      summary: "Create event member"
+      description: ""
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "event"
+          type: "integer"
+          required: true
+          description: "Id of event"
+        - name: "CreateEventMemberRequestBody"
+          in: "body"
+          description: "Body of request for creation of event member"
+          required: true
+          schema:
+            $ref: "#/definitions/CreateEventMemberRequestModel"
+      responses:
+        200:
+          description: "Successful operation"
+        401:
+          description: "Incorrect auth credentials"
+        404:
+          description: "Not found"
+        422:
+          description: "Validation error"
+        500:
+          description: "Internal server error"
+    get:
+      tags:
+        - "event members"
+      summary: "Get event members"
+      description: ""
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "event"
+          type: "integer"
+          required: true
+          description: "Id of event"
+        - in: "query"
+          name: "limit"
+          type: "integer"
+          description: "Limit of items in response"
+        - in: "query"
+          name: "offset"
+          type: "integer"
+          description: "Offset of items in response"
+        - in: "query"
+          name: "sort_by"
+          type: "string"
+          description: "Sort by column"
+        - in: "query"
+          name: "sort_direction"
+          type: "string"
+          description: "Sort direction"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/EventMembersListResponseModel"
+        401:
+          description: "Incorrect auth credentials"
+        404:
+          description: "Not found"
+        422:
+          description: "Validation error"
+        500:
+          description: "Internal server error"
+
+  /event-members/{event_member}:
+    put:
+      tags:
+        - "event members"
+      summary: "Update event member"
+      description: ""
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "event_member"
+          type: "integer"
+          required: true
+          description: "Id of event member"
+        - name: "UpdateEventMemberRequestBody"
+          in: "body"
+          description: "Body of request for updating of event member"
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateEventMemberRequestModel"
+      responses:
+        200:
+          description: "Successful operation"
+        401:
+          description: "Incorrect auth credentials"
+        404:
+          description: "Not found"
+        422:
+          description: "Validation error"
+        500:
+          description: "Internal server error"
+    delete:
+      tags:
+        - "event members"
+      summary: "Delete event member"
+      description: ""
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "event_member"
+          type: "integer"
+          required: true
+          description: "Id of event member"
+      responses:
+        200:
+          description: "Successful operation"
+        401:
+          description: "Incorrect auth credentials"
+        404:
+          description: "Not found"
         422:
           description: "Validation error"
         500:
@@ -80,6 +214,9 @@ definitions:
 
   LoginRequestModel:
     type: "object"
+    required:
+      - "email"
+      - "password"
     properties:
       email:
         type: "string"
@@ -114,4 +251,59 @@ definitions:
       city_id:
         type: "integer"
       city_name:
+        type: "string"
+
+  CreateEventMemberRequestModel:
+    type: "object"
+    required:
+      - "name"
+      - "surname"
+      - "email"
+    properties:
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      email:
+        type: "string"
+
+  EventMembersListResponseModel:
+    type: "object"
+    properties:
+      count:
+        type: "integer"
+      items:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventMemberResponseModel"
+
+  EventMemberResponseModel:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      event_id:
+        type: "integer"
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      email:
+        type: "string"
+
+  UpdateEventMemberRequestModel:
+    type: "object"
+    required:
+      - "event_id"
+      - "name"
+      - "surname"
+      - "email"
+    properties:
+      event_id:
+        type: "integer"
+      name:
+        type: "string"
+      surname:
+        type: "string"
+      email:
         type: "string"
