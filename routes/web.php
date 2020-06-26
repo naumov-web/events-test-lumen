@@ -11,6 +11,7 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->group(['prefix' => 'dev-tools'], function () use ($router) {
+    $router->get('docs', 'DevTools\DocsController@form');
+    $router->get('swagger-file', 'DevTools\DocsController@file');
 });

@@ -1,0 +1,117 @@
+swagger: "2.0"
+info:
+  title: "Events test API"
+  description: "Docs for Events test API"
+  version: "1.0.0"
+schemes:
+  - "http"
+host: 127.0.0.1:31080
+basePath: /api
+
+paths:
+
+  /auth/login:
+    post:
+      tags:
+        - "login"
+      summary: "Login user"
+      description: ""
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "LoginRequestBody"
+          in: "body"
+          description: "Body of request for login user"
+          required: true
+          schema:
+            $ref: "#/definitions/LoginRequestModel"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/TokenResponseModel"
+        401:
+          description: "Incorrect login data"
+        422:
+          description: "Validation error"
+        500:
+          description: "Internal server error"
+
+  /account/events:
+    get:
+      tags:
+        - "events"
+      summary: "Get events list"
+      description: ""
+      produces:
+        - "application/json"
+      parameters:
+        - in: "query"
+          name: "limit"
+          type: "integer"
+          description: "Limit of items in response"
+        - in: "query"
+          name: "offset"
+          type: "integer"
+          description: "Offset of items in response"
+        - in: "query"
+          name: "sort_by"
+          type: "string"
+          description: "Sort by column"
+        - in: "query"
+          name: "sort_direction"
+          type: "string"
+          description: "Sort direction"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/EventsListResponseModel"
+        401:
+          description: "Incorrect login data"
+        422:
+          description: "Validation error"
+        500:
+          description: "Internal server error"
+
+definitions:
+
+  LoginRequestModel:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      password:
+        type: "string"
+
+  TokenResponseModel:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+
+  EventsListResponseModel:
+    type: "object"
+    properties:
+      count:
+        type: "integer"
+      items:
+        type: "array"
+        items:
+          $ref: "#/definitions/EventResponseModel"
+
+  EventResponseModel:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      date_start:
+        type: "string"
+      city_id:
+        type: "integer"
+      city_name:
+        type: "string"
