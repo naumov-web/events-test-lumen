@@ -1,24 +1,37 @@
-# Lumen PHP Framework
+# Events Test
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+## Развертывание локальной версии проекта
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+<p>
+    Для развертывания локальной версии проекта необходимо в корневой директории 
+    проекта выполнить в консоли команду:
+</p>
 
-## Official Documentation
+```shell script
+    ./deployment/local/scripts/start.sh
+```
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+<p>
+    После этого Docker самостоятельно установит и свяжет все необходимые компоненты 
+    приложения.
+</p>
 
-## Contributing
+## Подключение к Docker-контейнеру с PHP-FPM
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<p>
+    Для подключения к консоли Docker-контейнера с PHP-FPM необходимо в корневой
+    директории проекта выполнить в консоли команду:
+</p>
 
-## Security Vulnerabilities
+```shell script
+    ./deployment/local/scripts/php_fpm_bash.sh
+```
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+## Просмотр документации API
 
-## License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p>
+    Для просмотра документации API необходимо в браузере открыть ссылку
+    <a href="http://127.0.0.1:31080/dev-tools/docs">
+        http://127.0.0.1:31080/dev-tools/docs
+    </a>
+</p>
