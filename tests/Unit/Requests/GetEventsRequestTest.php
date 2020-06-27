@@ -3,12 +3,11 @@
 namespace Tests\Unit\Requests;
 
 use Illuminate\Http\Response;
-use Tests\BaseTest;
 
 /**
- * Class LoginRequestTest
+ * Class GetEventsRequestTest
  */
-final class LoginRequestTest extends BaseTest
+final class GetEventsRequestTest extends BaseAccountRequestTest
 {
 
     /**
@@ -19,9 +18,9 @@ final class LoginRequestTest extends BaseTest
     public function testValidation()
     {
         foreach ($this->getInvalidValueCases() as $invalid_case) {
-            $this->post(
-                route('auth.login'),
-                $invalid_case
+            $this->json(
+                'GET',
+                route('account.get-events', $invalid_case)
             )->assertResponseStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         }
     }
@@ -34,12 +33,12 @@ final class LoginRequestTest extends BaseTest
     public function getInvalidValueCases(): array
     {
         return [
-            [],
-            ['email' => ''],
-            ['email' => '', 'password' => ''],
-            ['email' => 'test', 'password' => 'password'],
-            ['email' => 'test@test.com', 'password' => 12345],
-            ['email' => 'test@test.com', 'password' => true],
+            ['limit' => 2],
+            ['offset' => 2],
+            ['sort_by' => 'id'],
+            ['sort_direction' => 'asc'],
+            ['sort_by' => 'id', 'sort_direction' => 'test'],
+            ['limit' => 2, 'sort_by' => 'id', 'sort_direction' => 'desc'],
         ];
     }
 

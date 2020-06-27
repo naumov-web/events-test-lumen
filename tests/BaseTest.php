@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 

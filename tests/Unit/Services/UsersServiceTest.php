@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Unit\Services;
+
 use App\Services\UsersService;
+use Tests\BaseTest;
 
 /**
  * Class UsersServiceTest

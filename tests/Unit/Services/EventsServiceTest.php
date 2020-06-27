@@ -1,8 +1,11 @@
 <?php
 
+namespace Tests\Unit\Services;
+
 use App\Services\CitiesService;
 use App\Services\EventsService;
 use Illuminate\Support\Collection;
+use Tests\BaseTest;
 
 /**
  * Class EventsServiceTest
