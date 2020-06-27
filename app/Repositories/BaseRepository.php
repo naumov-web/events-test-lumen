@@ -175,4 +175,18 @@ abstract class BaseRepository
 
         return $query->first();
     }
+
+    /**
+     * Store model by data if not exists
+     *
+     * @param array $data
+     * @return Model
+     */
+    public function storeIfNotExists(array $data): Model
+    {
+        $model_class = $this->getModelClass();
+        $model = $model_class::firstOrCreate($data);
+
+        return $model;
+    }
 }

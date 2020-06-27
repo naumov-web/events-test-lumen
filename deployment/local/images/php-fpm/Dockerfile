@@ -16,4 +16,5 @@ RUN pecl install redis && docker-php-ext-enable redis
 
 RUN curl -sL https://getcomposer.org/installer | php -- --install-dir /usr/bin --filename composer
 
-CMD composer install --working-dir=/var/www && php artisan key:generate && php-fpm
+CMD composer install --working-dir=/var/www && php artisan key:generate && \
+    php artisan migrate && php artisan db:seed && php-fpm

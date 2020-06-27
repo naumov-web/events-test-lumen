@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 /**
  * Class DatabaseSeeder
  */
-class DatabaseSeeder extends Seeder
+final class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call('UsersTableSeeder');
+        $this->call('UsersSeeder');
+        $this->call('CitiesSeeder');
+        $this->call('EventsSeeder');
     }
 }

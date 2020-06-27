@@ -15,3 +15,7 @@ $router->group(['prefix' => 'dev-tools'], function () use ($router) {
     $router->get('docs', 'DevTools\DocsController@form');
     $router->get('swagger-file', 'DevTools\DocsController@file');
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->post('auth/login', 'Api\AuthController@login')->name('auth.login');
+});
