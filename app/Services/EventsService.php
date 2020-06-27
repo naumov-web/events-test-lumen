@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\DTO\ListItemsDTO;
 use App\Repositories\BaseRepository;
 use App\Repositories\EventsRepository;
 use Illuminate\Support\Arr;
@@ -63,5 +64,16 @@ final class EventsService extends BaseEntityService
 
             $this->getRepository()->storeIfNotExists($event_data);
         }
+    }
+
+    /**
+     * Get events list
+     *
+     * @param array $data
+     * @return ListItemsDTO
+     */
+    public function index(array $data = []): ListItemsDTO
+    {
+        return $this->getRepository()->index($data);
     }
 }

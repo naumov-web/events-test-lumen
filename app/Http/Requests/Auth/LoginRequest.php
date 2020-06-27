@@ -8,7 +8,7 @@ use App\Http\Requests\BaseApiRequest;
  * Class LoginRequest
  * @package App\Http\Requests\Auth
  */
-class LoginRequest extends BaseApiRequest
+final class LoginRequest extends BaseApiRequest
 {
 
     /**
