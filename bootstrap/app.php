@@ -58,10 +58,11 @@ $app->singleton(
 |
 */
 
-$app->configure('app');
+//$app->configure('app');
 $app->configure('auth');
 $app->configure('defaults');
 $app->configure('database');
+$app->configure('error_messages');
 
 /*
 |--------------------------------------------------------------------------

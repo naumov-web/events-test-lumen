@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Services\UsersService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 /**
@@ -33,9 +34,9 @@ final class AuthController extends Controller
      * Login user
      *
      * @param LoginRequest $request
-     * @return array
+     * @return JsonResponse
      */
-    public function login(LoginRequest $request): array
+    public function login(LoginRequest $request): JsonResponse
     {
         $data = $request->all();
         $token = $this->users_service->getToken($data);
@@ -44,9 +45,9 @@ final class AuthController extends Controller
             abort(Response::HTTP_UNAUTHORIZED);
         }
 
-        return [
+        return response()->json([
             'token' => $token
-        ];
+        ]);
     }
 
 }

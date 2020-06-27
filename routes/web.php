@@ -17,9 +17,20 @@ $router->group(['prefix' => 'dev-tools'], function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
+
     $router->post('auth/login', ['as' => 'auth.login', 'uses' => 'Api\AuthController@login']);
 
     $router->group(['prefix' => 'account', 'middleware' => 'jwt.auth'], function () use ($router) {
+
         $router->get('events', ['as' => 'account.get-events', 'uses' => 'Api\EventsController@index']);
+
+        $router->post(
+            'events/{event}/members',
+            ['as' => 'account.create-event-member', 'uses' => 'Api\EventMembersController@create']
+        );
+        $router->get(
+            'events/{event}/members',
+            ['as' => 'account.get-event-members', 'uses' => 'Api\EventMembersController@indexByEvent']
+        );
     });
 });
