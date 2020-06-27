@@ -23,8 +23,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
-
+$app->withFacades();
 $app->withEloquent();
 
 /*
@@ -60,6 +59,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('auth');
 $app->configure('defaults');
 $app->configure('database');
 
@@ -94,10 +94,12 @@ $app->configure('database');
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(App\Providers\RouteBindingServiceProvider::class);
+$app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\BaseRepository;
 use App\Repositories\UsersRepository;
 use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 /**
  * Class UsersService
@@ -41,5 +42,16 @@ final class UsersService extends BaseEntityService
                 ]);
             }
         }
+    }
+
+    /**
+     * Get token by login and password
+     *
+     * @param array $data
+     * @return string
+     */
+    public function getToken(array $data): ?string
+    {
+        return JWTAuth::attempt($data);
     }
 }

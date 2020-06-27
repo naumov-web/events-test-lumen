@@ -17,5 +17,9 @@ $router->group(['prefix' => 'dev-tools'], function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->post('auth/login', 'Api\AuthController@login')->name('auth.login');
+    $router->post('auth/login', ['as' => 'auth.login', 'uses' => 'Api\AuthController@login']);
+
+    $router->group(['prefix' => 'account', 'middleware' => 'jwt.auth'], function () use ($router) {
+        $router->get('events', ['as' => 'account.get-events', 'uses' => 'Api\EventsController@index']);
+    });
 });

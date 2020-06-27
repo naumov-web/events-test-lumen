@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
-use App\User;
-use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
-class AuthServiceProvider extends ServiceProvider
+/**
+ * Class AuthServiceProvider
+ * @package App\Providers
+ */
+final class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.

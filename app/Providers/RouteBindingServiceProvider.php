@@ -9,7 +9,7 @@ use mmghv\LumenRouteBinding\RouteBindingServiceProvider as BaseServiceProvider;
  * Class RouteBindingServiceProvider
  * @package App\Providers
  */
-class RouteBindingServiceProvider extends BaseServiceProvider
+final class RouteBindingServiceProvider extends BaseServiceProvider
 {
     /**
      * Boot the service provider
