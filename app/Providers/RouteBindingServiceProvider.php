@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Event;
+use App\Models\EventMember;
 use App\Models\User;
 use mmghv\LumenRouteBinding\RouteBindingServiceProvider as BaseServiceProvider;
 
@@ -20,5 +22,7 @@ final class RouteBindingServiceProvider extends BaseServiceProvider
         $binder = $this->binder;
 
         $binder->bind('user', User::class);
+        $binder->bind('event', Event::class);
+        $binder->bind('event_member', EventMember::class);
     }
 }

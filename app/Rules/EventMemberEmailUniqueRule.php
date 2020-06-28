@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\Models\Event;
+use App\Services\EventMembersService;
 use Illuminate\Contracts\Validation\Rule;
 
 /**
@@ -19,12 +20,19 @@ class EventMemberEmailUniqueRule implements Rule
     protected $event;
 
     /**
+     * Event members service instance
+     * @var EventMembersService
+     */
+    protected $event_members_service;
+
+    /**
      * EventMemberEmailUniqueRule constructor.
      * @param Event $event
      */
     public function __construct(Event $event)
     {
         $this->event = $event;
+        $this->event_members_service = EventMembersService::getInstance();
     }
 
     /**
@@ -32,7 +40,10 @@ class EventMemberEmailUniqueRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        // TODO: Implement passes() method.
+        return !(bool)$this->event_members_service->getEventMemberByEmail(
+            $this->event,
+            $value
+        );
     }
 
     /**

@@ -101,6 +101,8 @@ $app->register(App\Providers\RouteBindingServiceProvider::class);
 $app->register(Anik\Form\FormRequestServiceProvider::class);
 $app->register(Laravel\Tinker\TinkerServiceProvider::class);
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+$app->register(Illuminate\Redis\RedisServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

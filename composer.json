@@ -11,9 +11,9 @@
         "laravel/tinker": "^2.4",
         "mmghv/lumen-route-binding": "^1.5",
         "tymon/jwt-auth": "^1.0",
-        "illuminate/redis": "^6.5",
-        "illuminate/mail": "^6.5",
-        "predis/predis": "v0.8.7"
+        "illuminate/mail": "^7.17.2",
+        "illuminate/redis": "^7.17.2",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9.1",
