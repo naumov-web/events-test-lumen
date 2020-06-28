@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
  * Class NewEventMember
  * @package App\Mail
  */
-class NewEventMember extends Mailable
+final class NewEventMember extends Mailable
 {
 
     /**

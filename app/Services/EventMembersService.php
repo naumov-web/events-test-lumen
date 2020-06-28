@@ -99,4 +99,16 @@ final class EventMembersService extends BaseEntityService
             )
         );
     }
+
+    /**
+     * Delete event member
+     *
+     * @param EventMember $event_member
+     * @return bool
+     * @throws \Exception
+     */
+    public function delete(EventMember $event_member): bool
+    {
+        return $this->getRepository()->delete($event_member);
+    }
 }

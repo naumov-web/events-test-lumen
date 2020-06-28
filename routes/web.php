@@ -22,8 +22,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->group(['prefix' => 'account', 'middleware' => 'jwt.auth'], function () use ($router) {
 
+        // Events
         $router->get('events', ['as' => 'account.get-events', 'uses' => 'Api\EventsController@index']);
 
+        // Event members
         $router->post(
             'events/{event}/members',
             ['as' => 'account.create-event-member', 'uses' => 'Api\EventMembersController@create']
@@ -31,6 +33,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->get(
             'events/{event}/members',
             ['as' => 'account.get-event-members', 'uses' => 'Api\EventMembersController@indexByEvent']
+        );
+
+        // Specify event member
+        $router->delete(
+            'event-members/{event_member}',
+            ['as' => 'account.delete-event-member', 'uses' => 'Api\EventMembersController@delete']
         );
     });
 });

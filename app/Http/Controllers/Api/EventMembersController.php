@@ -8,6 +8,7 @@ use App\Http\Requests\EventMembers\GetEventMembersRequest;
 use App\Http\Resources\EventMembers\EventMemberResource;
 use App\Http\Resources\ListResource;
 use App\Models\Event;
+use App\Models\EventMember;
 use App\Services\EventMembersService;
 use App\Traits\UseEventMemberValidator;
 use Illuminate\Http\JsonResponse;
@@ -92,6 +93,22 @@ final class EventMembersController extends Controller
             $event_members->getModels(),
             $event_members->getCount()
         );
+    }
+
+    /**
+     * Delete event member
+     *
+     * @param EventMember $event_member
+     * @return JsonResponse
+     * @throws \Exception
+     */
+    public function delete(EventMember $event_member): JsonResponse
+    {
+        $this->event_members_service->delete($event_member);
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 
 }
