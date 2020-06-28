@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventMembers\CreateEventMemberRequest;
 use App\Http\Requests\EventMembers\GetEventMembersRequest;
+use App\Http\Requests\EventMembers\UpdateEventMemberRequest;
 use App\Http\Resources\EventMembers\EventMemberResource;
 use App\Http\Resources\ListResource;
 use App\Models\Event;
@@ -106,6 +107,39 @@ final class EventMembersController extends Controller
         return new EventMemberResource(
             $this->event_members_service->show($event_member)
         );
+    }
+
+    /**
+     * Update event member
+     *
+     * @param UpdateEventMemberRequest $request
+     * @param EventMember $event_member
+     * @return JsonResponse
+     */
+    public function update(UpdateEventMemberRequest $request, EventMember $event_member): JsonResponse
+    {
+        $validator = $this->getEventMemberValidator(
+            $request->all(),
+            $event_member->event,
+            $event_member
+        );
+
+        try {
+            $validator->validate();
+        } catch (\Exception $exception) {
+            return response()->json(
+                [
+                    'errors' => $validator->errors()
+                ],
+                Response::HTTP_UNPROCESSABLE_ENTITY
+            );
+        }
+
+        $this->event_members_service->update($event_member, $request->all());
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 
     /**

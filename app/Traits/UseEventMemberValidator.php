@@ -30,7 +30,7 @@ trait UseEventMemberValidator
             [
                 'name' => ['required', 'string'],
                 'surname' => ['required', 'string'],
-                'email' => ['required', 'string', 'email', new EventMemberEmailUniqueRule($event)],
+                'email' => ['required', 'string', 'email', new EventMemberEmailUniqueRule($event, $event_member)],
             ]
         );
     }

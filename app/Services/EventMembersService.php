@@ -64,17 +64,24 @@ final class EventMembersService extends BaseEntityService
      *
      * @param Event $event
      * @param string $email
+     * @param EventMember $except_model
      * @return EventMember|null
      */
-    public function getEventMemberByEmail(Event $event, string $email): ?EventMember
+    public function getEventMemberByEmail(Event $event, string $email, EventMember $except_model = null): ?EventMember
     {
+        $filters = [
+            ['event_id', $event->id],
+            ['email', $email]
+        ];
+
+        if ($except_model) {
+            $filters[] = ['id', '<>', $except_model->id];
+        }
+
         /**
          * @var EventMember $model
          */
-        $model = $this->getRepository()->getFirstByFilters([
-            ['event_id', $event->id],
-            ['email', $email]
-        ]);
+        $model = $this->getRepository()->getFirstByFilters($filters);
 
         return $model;
     }
@@ -112,6 +119,26 @@ final class EventMembersService extends BaseEntityService
          * @var EventMember $result
          */
         $result = $this->getRepository()->show($event_member);
+
+        return $result;
+    }
+
+    /**
+     * Update event member
+     *
+     * @param EventMember $event_member
+     * @param array $data
+     * @return EventMember
+     */
+    public function update(EventMember $event_member, array $data): EventMember
+    {
+        /**
+         * @var EventMember $result
+         */
+        $result = $this->getRepository()->update(
+            $event_member,
+            $data
+        );
 
         return $result;
     }

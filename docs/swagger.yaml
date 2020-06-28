@@ -318,13 +318,10 @@ definitions:
   UpdateEventMemberRequestModel:
     type: "object"
     required:
-      - "event_id"
       - "name"
       - "surname"
       - "email"
     properties:
-      event_id:
-        type: "integer"
       name:
         type: "string"
       surname:

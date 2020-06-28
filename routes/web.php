@@ -40,6 +40,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
             'event-members/{event_member}',
             ['as' => 'account.get-event-member', 'uses' => 'Api\EventMembersController@show']
         );
+        $router->put(
+            'event-members/{event_member}',
+            ['as' => 'account.update-event-member', 'uses' => 'Api\EventMembersController@update']
+        );
         $router->delete(
             'event-members/{event_member}',
             ['as' => 'account.delete-event-member', 'uses' => 'Api\EventMembersController@delete']
