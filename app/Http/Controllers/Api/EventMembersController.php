@@ -96,6 +96,19 @@ final class EventMembersController extends Controller
     }
 
     /**
+     * Show detailed event member info
+     *
+     * @param EventMember $event_member
+     * @return EventMemberResource
+     */
+    public function show(EventMember $event_member): EventMemberResource
+    {
+        return new EventMemberResource(
+            $this->event_members_service->show($event_member)
+        );
+    }
+
+    /**
      * Delete event member
      *
      * @param EventMember $event_member

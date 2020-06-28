@@ -101,6 +101,22 @@ final class EventMembersService extends BaseEntityService
     }
 
     /**
+     * Show event member detail info
+     *
+     * @param EventMember $event_member
+     * @return EventMember
+     */
+    public function show(EventMember $event_member): EventMember
+    {
+        /**
+         * @var EventMember $result
+         */
+        $result = $this->getRepository()->show($event_member);
+
+        return $result;
+    }
+
+    /**
      * Delete event member
      *
      * @param EventMember $event_member

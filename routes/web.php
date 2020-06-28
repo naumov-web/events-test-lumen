@@ -36,6 +36,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         );
 
         // Specify event member
+        $router->get(
+            'event-members/{event_member}',
+            ['as' => 'account.get-event-member', 'uses' => 'Api\EventMembersController@show']
+        );
         $router->delete(
             'event-members/{event_member}',
             ['as' => 'account.delete-event-member', 'uses' => 'Api\EventMembersController@delete']
