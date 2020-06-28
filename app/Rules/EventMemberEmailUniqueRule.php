@@ -10,7 +10,7 @@ use Illuminate\Contracts\Validation\Rule;
  * Class EventMemberEmailUniqueRule
  * @package App\Rules
  */
-class EventMemberEmailUniqueRule implements Rule
+final class EventMemberEmailUniqueRule implements Rule
 {
 
     /**

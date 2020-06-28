@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 /**
  * Class EventMember
  * @package App\Models
@@ -22,4 +24,14 @@ final class EventMember extends BaseModel
     protected $guarded = [
         'id'
     ];
+
+    /**
+     * Get event relation
+     *
+     * @return BelongsTo
+     */
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Mail\NewEventMember;
 use App\Models\EventMember;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class SendNewEventMemberEmail
@@ -34,6 +36,8 @@ final class SendNewEventMemberEmail extends Job
      */
     public function handle()
     {
-        //
+        Mail::send(
+            new NewEventMember($this->event_member)
+        );
     }
 }
